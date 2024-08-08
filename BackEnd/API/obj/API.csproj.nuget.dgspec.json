@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\giorgi\\source\\repos\\API\\API.csproj": {}
+    "C:\\Users\\giorgi\\source\\repos\\BackEnd\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\giorgi\\source\\repos\\API\\API.csproj": {
+    "C:\\Users\\giorgi\\source\\repos\\BackEnd\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\giorgi\\source\\repos\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\giorgi\\source\\repos\\BackEnd\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\giorgi\\source\\repos\\API\\API.csproj",
+        "projectPath": "C:\\Users\\giorgi\\source\\repos\\BackEnd\\API\\API.csproj",
         "packagesPath": "C:\\Users\\giorgi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\giorgi\\source\\repos\\API\\obj\\",
+        "outputPath": "C:\\Users\\giorgi\\source\\repos\\BackEnd\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\giorgi\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,7 +43,35 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
               "version": "[8.0.7, )"
             },
