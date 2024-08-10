@@ -1,4 +1,5 @@
 ﻿using API.Dtos;
+using API.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,12 @@ namespace API.Controllers;
 public class AccountController : ControllerBase
 {
     private readonly UserManager<AppUser> _userManager;
-    public AccountController(UserManager<AppUser> userManager)
+
+    private readonly ITokenInterface _tokenInterface;
+    public AccountController(UserManager<AppUser> userManager, ITokenInterface tokenInterface)
     {
         _userManager = userManager;
+        _tokenInterface = tokenInterface;
     }
     
 
@@ -28,6 +32,7 @@ public class AccountController : ControllerBase
             {
                 UserName = registerDto.UserName,
                 Email = registerDto.Email,
+                
             };
 
             if (registerDto.Password == null)
@@ -47,6 +52,7 @@ public class AccountController : ControllerBase
                             {
                                 UserName = appUser.UserName,
                                 Email = appUser.Email,
+                                Token = _tokenInterface.CreateToken(appUser)
                             }
                         );
                 }
