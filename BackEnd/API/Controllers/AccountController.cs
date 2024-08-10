@@ -42,7 +42,13 @@ public class AccountController : ControllerBase
                 var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                 if (roleResult.Succeeded)
                 {
-                    return Ok("User Created");
+                    return Ok(
+                            new NewUserDto
+                            {
+                                UserName = appUser.UserName,
+                                Email = appUser.Email,
+                            }
+                        );
                 }
                 else
                 {
