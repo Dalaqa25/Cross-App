@@ -12,6 +12,10 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         
     }
+
+    public DbSet<Worker> Workers { get; set; }
+    public DbSet<Employer> Employers { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
