@@ -1,6 +1,6 @@
-﻿namespace API.Dtos.ProjectsDto;
+﻿namespace API.Models;
 
-public class ProjectsDto
+public class Project
 {
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;

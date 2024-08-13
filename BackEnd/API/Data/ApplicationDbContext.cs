@@ -12,7 +12,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         
     }
-    
+
+    public DbSet<Project> Project { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

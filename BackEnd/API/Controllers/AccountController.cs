@@ -23,7 +23,7 @@ public class AccountController : ControllerBase
     }
 
 
-    //HttpPost for Login
+    //HttpPost for Login//
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto loginDto)
     {
@@ -46,7 +46,7 @@ public class AccountController : ControllerBase
         );
     }
 
-
+    //HttpPost for register//
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
     {
@@ -59,6 +59,7 @@ public class AccountController : ControllerBase
             {
                 UserName = registerDto.UserName,
                 Email = registerDto.Email,
+                CreatedOn = DateTime.UtcNow
             };
 
             if (registerDto.Password == null)
