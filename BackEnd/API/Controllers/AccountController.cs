@@ -70,7 +70,15 @@ public class AccountController : ControllerBase
 
             if (createdUser.Succeeded)
             {
-                var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
+
+                var role = registerDto.Role;
+                if (role != "Employer" && role != "Worker")
+                {
+                    return BadRequest("Invalid role specified");
+                }
+
+
+                var roleResult = await _userManager.AddToRoleAsync(appUser, role);
                 if (roleResult.Succeeded)
                 {
                     return Ok(
@@ -78,6 +86,7 @@ public class AccountController : ControllerBase
                             {
                                 UserName = appUser.UserName,
                                 Email = appUser.Email,
+                                
                                 Token = _tokenInterface.CreateToken(appUser)
                             }
                         );

@@ -12,9 +12,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         
     }
-
-    public DbSet<Worker> Workers { get; set; }
-    public DbSet<Employer> Employers { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -28,8 +26,13 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
             },
             new IdentityRole
             {
-                Name = "User",
-                NormalizedName = "USER",
+                Name = "Employer",
+                NormalizedName = "EMPLOYER",
+            },
+            new IdentityRole
+            {
+                Name = "Worker",
+                NormalizedName = "WORKER"
             }
         };
         builder.Entity<IdentityRole>().HasData(roles);

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240810044125_Reg")]
-    partial class Reg
+    [Migration("20240812175722_IdentityCore")]
+    partial class IdentityCore
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,15 +119,21 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ff250dd2-e6ba-4b40-9d1d-34543bcf9d7a",
+                            Id = "e2405e1d-dc75-42b4-aeb5-cdb665108a37",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5e86a567-7738-4457-9000-a91dafbe70ff",
-                            Name = "User",
-                            NormalizedName = "USER"
+                            Id = "ed2ddd52-0433-4472-a571-8e5dc97a2415",
+                            Name = "Employer",
+                            NormalizedName = "EMPLOYER"
+                        },
+                        new
+                        {
+                            Id = "81f82907-adf6-4576-8d5e-0ef4e434a721",
+                            Name = "Worker",
+                            NormalizedName = "WORKER"
                         });
                 });
 

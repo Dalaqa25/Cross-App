@@ -87,62 +87,6 @@ namespace API.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("API.Models.Employer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrganizationTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employers");
-                });
-
-            modelBuilder.Entity("API.Models.Worker", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("JobTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Workers");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -172,15 +116,21 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ed84865d-c769-4787-8f6b-fb656195281b",
+                            Id = "e2405e1d-dc75-42b4-aeb5-cdb665108a37",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e3699e2b-1c18-473a-95e3-5cadf08b8020",
-                            Name = "User",
-                            NormalizedName = "USER"
+                            Id = "ed2ddd52-0433-4472-a571-8e5dc97a2415",
+                            Name = "Employer",
+                            NormalizedName = "EMPLOYER"
+                        },
+                        new
+                        {
+                            Id = "81f82907-adf6-4576-8d5e-0ef4e434a721",
+                            Name = "Worker",
+                            NormalizedName = "WORKER"
                         });
                 });
 
