@@ -36,14 +36,51 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Create([FromBody] CreateProjectsDto createProjectsDto)
+    public async Task<IActionResult> Create([FromBody] CreateProjectsDto createProjectsDto)
     {
         var projectModel = createProjectsDto.ToProjectFromCreateProjectDto();
 
         _context.Project.Add(projectModel);
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
        return CreatedAtAction(nameof(GetById), new { id = projectModel.Id }, projectModel.ToProjectsDto());
+    }
+
+    [HttpPut("{id}")]
+    //[fromRoute]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateProjectDto projectDto)
+    {
+        var projectModel = await _context.Project.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (projectModel == null)
+        {
+            return NotFound();
+        }
+
+        projectModel.Title = projectDto.Title;
+        projectModel.Description = projectDto.Description;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(projectModel.ToProjectsDto());
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        var projectModel = await _context.Project.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (projectModel == null)
+        {
+            return NotFound();
+        }
+
+        _context.Project.Remove(projectModel);
+
+        await _context.SaveChangesAsync();
+        
+        
+        return NoContent();
     }
 }
