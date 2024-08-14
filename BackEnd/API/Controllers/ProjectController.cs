@@ -1,6 +1,7 @@
 ﻿using API.Data;
 using API.Dtos.ProjectsDto;
 using API.Mapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Create([FromBody] CreateProjectsDto createProjectsDto)
     {
         var projectModel = createProjectsDto.ToProjectFromCreateProjectDto();
@@ -48,7 +50,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    //[fromRoute]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateProjectDto projectDto)
     {
         var projectModel = await _context.Project.FirstOrDefaultAsync(x => x.Id == id);
@@ -67,6 +69,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
         var projectModel = await _context.Project.FirstOrDefaultAsync(x => x.Id == id);
