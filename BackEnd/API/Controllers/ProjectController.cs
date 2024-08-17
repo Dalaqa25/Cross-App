@@ -19,7 +19,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpGet]
-    
+    [Authorize]
     public async Task<IActionResult> GetAll()
     {
         var projectModel = await _context.Project
