@@ -59,7 +59,8 @@ public class AccountController : ControllerBase
             {
                 UserName = registerDto.UserName,
                 Email = registerDto.Email,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow,
+                Roles = registerDto.Roles
             };
 
             if (registerDto.Password == null)
@@ -72,7 +73,7 @@ public class AccountController : ControllerBase
             if (createdUser.Succeeded)
             {
 
-                var role = registerDto.Role;
+                var role = registerDto.Roles;
                 if (role != "Employer" && role != "Worker")
                 {
                     return BadRequest("Invalid role specified");
@@ -87,7 +88,7 @@ public class AccountController : ControllerBase
                             {
                                 UserName = appUser.UserName,
                                 Email = appUser.Email,
-                                
+                                Roles = appUser.Roles,
                                 Token = _tokenInterface.CreateToken(appUser)
                             }
                         );

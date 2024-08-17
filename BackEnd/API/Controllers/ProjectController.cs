@@ -19,6 +19,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpGet]
+    
     public async Task<IActionResult> GetAll()
     {
         var projectModel = await _context.Project
@@ -29,6 +30,7 @@ public class ProjectController : ControllerBase
 
 
     [HttpGet("{id}")]
+    
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
         var findProjectId = await _context.Project.FindAsync(id);
@@ -37,7 +39,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Employer")]
+    
     public async Task<IActionResult> Create([FromBody] CreateProjectsDto createProjectsDto)
     {
         var projectModel = createProjectsDto.ToProjectFromCreateProjectDto();
@@ -50,7 +52,6 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateProjectDto projectDto)
     {
         var projectModel = await _context.Project.FirstOrDefaultAsync(x => x.Id == id);
@@ -69,7 +70,6 @@ public class ProjectController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Employer")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
         var projectModel = await _context.Project.FirstOrDefaultAsync(x => x.Id == id);
