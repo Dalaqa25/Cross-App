@@ -27,13 +27,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
             },
             new IdentityRole
             {
-                Name = "Employer",
-                NormalizedName = "EMPLOYER",
-            },
-            new IdentityRole
-            {
-                Name = "Worker",
-                NormalizedName = "WORKER"
+                Name = "Student",
+                NormalizedName = "STUDENT",
             }
         };
         builder.Entity<IdentityRole>().HasData(roles);

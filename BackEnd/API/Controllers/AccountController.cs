@@ -60,7 +60,6 @@ public class AccountController : ControllerBase
                 UserName = registerDto.UserName,
                 Email = registerDto.Email,
                 CreatedOn = DateTime.UtcNow,
-                Roles = registerDto.Roles
             };
 
             if (registerDto.Password == null)
@@ -69,18 +68,10 @@ public class AccountController : ControllerBase
             }
 
             var createdUser = await _userManager.CreateAsync(appUser, registerDto.Password);
-
+            
             if (createdUser.Succeeded)
             {
-
-                var role = registerDto.Roles;
-                if (role != "Employer" && role != "Worker")
-                {
-                    return BadRequest("Invalid role specified");
-                }
-
-
-                var roleResult = await _userManager.AddToRoleAsync(appUser, role);
+                var roleResult = await _userManager.AddToRoleAsync(appUser, "Student");
                 if (roleResult.Succeeded)
                 {
                     return Ok(
@@ -88,7 +79,6 @@ public class AccountController : ControllerBase
                             {
                                 UserName = appUser.UserName,
                                 Email = appUser.Email,
-                                Roles = appUser.Roles,
                                 Token = _tokenInterface.CreateToken(appUser)
                             }
                         );

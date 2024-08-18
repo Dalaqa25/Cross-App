@@ -33,7 +33,6 @@ namespace API.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Roles = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -181,9 +180,8 @@ namespace API.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0da96351-f6f2-4b30-88f1-02b5152198d0", null, "Employer", "EMPLOYER" },
-                    { "5cc32888-1728-41da-b0c2-dd80c72d8b6c", null, "Worker", "WORKER" },
-                    { "8065450d-a12c-4a86-accd-0b513de5a499", null, "Admin", "ADMIN" }
+                    { "57b6240d-4811-41ab-985f-6b403244c5e8", null, "Admin", "ADMIN" },
+                    { "68907c73-24ab-40e3-a3e8-a60e66a77ca0", null, "Student", "STUDENT" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -67,10 +67,6 @@ namespace API.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Roles")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -150,21 +146,15 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8065450d-a12c-4a86-accd-0b513de5a499",
+                            Id = "57b6240d-4811-41ab-985f-6b403244c5e8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0da96351-f6f2-4b30-88f1-02b5152198d0",
-                            Name = "Employer",
-                            NormalizedName = "EMPLOYER"
-                        },
-                        new
-                        {
-                            Id = "5cc32888-1728-41da-b0c2-dd80c72d8b6c",
-                            Name = "Worker",
-                            NormalizedName = "WORKER"
+                            Id = "68907c73-24ab-40e3-a3e8-a60e66a77ca0",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
                         });
                 });
 
