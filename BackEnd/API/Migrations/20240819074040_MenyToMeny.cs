@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class MenyToMeny : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -175,13 +175,37 @@ namespace API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Portfolio",
+                columns: table => new
+                {
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Portfolio", x => new { x.AppUserId, x.ProjectId });
+                    table.ForeignKey(
+                        name: "FK_Portfolio_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Portfolio_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "57b6240d-4811-41ab-985f-6b403244c5e8", null, "Admin", "ADMIN" },
-                    { "68907c73-24ab-40e3-a3e8-a60e66a77ca0", null, "Student", "STUDENT" }
+                    { "1400b7f5-95d4-4552-9a36-2873ac4e814a", null, "Admin", "ADMIN" },
+                    { "24a9e558-5e5f-4366-a8aa-eeb6a378762a", null, "Student", "STUDENT" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -222,6 +246,11 @@ namespace API.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Portfolio_ProjectId",
+                table: "Portfolio",
+                column: "ProjectId");
         }
 
         /// <inheritdoc />
@@ -243,13 +272,16 @@ namespace API.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Project");
+                name: "Portfolio");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Project");
         }
     }
 }
