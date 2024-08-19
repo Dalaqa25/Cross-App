@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240818161556_init")]
-    partial class init
+    [Migration("20240819074040_MenyToMeny")]
+    partial class MenyToMeny
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,6 +120,21 @@ namespace API.Migrations
                     b.ToTable("Project");
                 });
 
+            modelBuilder.Entity("API.Models.Protfolio", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUserId", "ProjectId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Portfolio");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -149,13 +164,13 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "57b6240d-4811-41ab-985f-6b403244c5e8",
+                            Id = "1400b7f5-95d4-4552-9a36-2873ac4e814a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "68907c73-24ab-40e3-a3e8-a60e66a77ca0",
+                            Id = "24a9e558-5e5f-4366-a8aa-eeb6a378762a",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -267,6 +282,25 @@ namespace API.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("API.Models.Protfolio", b =>
+                {
+                    b.HasOne("API.Models.AppUser", "AppUser")
+                        .WithMany("Protfolios")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Project", "Project")
+                        .WithMany("Protfolios")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Project");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -316,6 +350,16 @@ namespace API.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("API.Models.AppUser", b =>
+                {
+                    b.Navigation("Protfolios");
+                });
+
+            modelBuilder.Entity("API.Models.Project", b =>
+                {
+                    b.Navigation("Protfolios");
                 });
 #pragma warning restore 612, 618
         }
